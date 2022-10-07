@@ -4,7 +4,11 @@
 <div *ngFor="let product of products">
   <h3>
     <!-- Set the title to be the product's name by using the property binding [ ] syntax -->
-    <a [title]="product.name + ' details'">
+    <!-- When users click on a name in the product list, the router navigates them to the distinct URL for the product, shows the ProductDetailsComponent, and displays the product details. -->
+    <a
+      [title]="product.name + ' details'"
+      [routerLink]="['/products', product.id]"
+    >
       <!-- {{ }} renders the property value as text -->
       {{ product.name }}
     </a>
