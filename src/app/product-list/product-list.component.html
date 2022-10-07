@@ -3,9 +3,22 @@
 <!-- ngfor repeats the div for each product -->
 <div *ngFor="let product of products">
   <h3>
-    <!-- {{ }} renders the property value as text -->
-    {{ product.name }}
+    <!-- Set the title to be the product's name by using the property binding [ ] syntax -->
+    <a [title]="product.name + ' details'">
+      <!-- {{ }} renders the property value as text -->
+      {{ product.name }}
+    </a>
   </h3>
+
+  <!-- Angular only creates the <p> element if the current product has a description. -->
+  <p *ngIf="product.description">Description: {{ product.description }}</p>
+
+  <!-- Bind the button's click event to the share() method in product-list.component.ts. Event binding uses a set of parentheses, ( ) -->
+  <button type="button" (click)="share()">Share</button>
+
+  <!-- Display ProductsAlertsComponent as a child of this component. Pass the current product as input to the component using property binding. -->
+  <app-product-alerts [product]="product" (notify)="onNotify()">
+  </app-product-alerts>
 </div>
 
 <!-- 
